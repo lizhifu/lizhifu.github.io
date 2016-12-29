@@ -39,17 +39,17 @@ public interface Executor {
 ### ThreadPoolExecutor类
 是线程池的核心实现类，用来执行被提交的任务。它通常由工厂类Executors来创建，Executors可以创建
 
-* --SingleThreadExecutor--
-* --FixedThreadPool--
-* --CachedThreadPool--
-* --ScheduledThreadExecutor--  
+* **SingleThreadExecutor**
+* **FixedThreadPool**
+* **CachedThreadPool**
+* **ScheduledThreadExecutor**  
   
 
 等不同的ThreadPoolExecutor。示例如下：  
 
 `SingleThreadExecutor`
 
-```  
+```java 
 public class SingleThreadExecutorTest {
 
     public static void main(String[] args) {
@@ -78,7 +78,7 @@ public class SingleThreadExecutorTest {
 
 `FixedThreadPool`  
 
-```  
+```java  
 public class FixedThreadExecutorTest {
 
     public static void main(String[] args) {
