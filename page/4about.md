@@ -16,7 +16,7 @@ type: page
 
 * GitHub：[lizhifu](https://github.com/lizhifu)
 * email：ttyyzn@163.com
-* QQ:(674009403)
+* QQ: 674009403
 
 
 {% include comments.html %}
