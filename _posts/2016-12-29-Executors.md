@@ -9,7 +9,7 @@ tags: java Executor
 * content
 {:toc}
 
-## Executor框架
+## --Executor框架--
 Executor框架，基于Executor接口将任务提交和任务执行进行解耦设计，通过ExecutorService提供了简便方式来提交任务和获取任务执行结果，封装了任务执行的过程。
 Executor基于生产者-消费者模式。生产者提交任务，执行任务的线程是消费者。
 结构如图所示：
@@ -29,3 +29,44 @@ public interface Executor {
     void execute(Runnable command);    
 }  
 ```
+包含有一个方法executor，参数为一个Runable接口引用。
+
+### ThreadPoolExecutor类
+是线程池的核心实现类，用来执行被提交的任务。它通常由工厂类Executors来创建，Executors可以创建
+
+* SingleThreadExecutor
+* FixedThreadPool
+* CachedThreadPool
+* ScheduledThreadExecutor
+等不同的ThreadPoolExecutor。
+
+`SingleThreadExecutor`
+``` js
+public class CachedThreadExecutorTest {
+
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        IntStream.range(0, 6).forEach(i -> executor.execute(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                String threadName = Thread.currentThread().getName();
+                System.out.println("finished: " + threadName);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }));
+
+        try {
+            executor.shutdown();
+            executor.awaitTermination(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (!executor.isTerminated()) {
+                executor.shutdownNow();
+            }
+        }
+    }
+}
+```
+
