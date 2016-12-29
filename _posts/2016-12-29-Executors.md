@@ -28,10 +28,10 @@ Executor框架主要包含三个部分：
 ### Executor接口
 是Executor的基础，接口定义如下：  
 
-```  
+```java    
 public interface Executor {
-        void execute(Runnable command);
-    }
+    void execute(Runnable command);
+}
 ```    
 
 包含有一个方法executor，参数为一个Runable接口引用。
@@ -111,7 +111,7 @@ public class FixedThreadExecutorTest {
 
 `CachedThreadPool`  
 
-```  
+```java  
 public class CachedThreadExecutorTest {
 
     public static void main(String[] args) {
@@ -142,7 +142,7 @@ public class CachedThreadExecutorTest {
 
 `ScheduledThreadExecutor`
 
-```  
+```java  
 public class ScheduledThreadExecutorTest {
 
     public static void main(String[] args) {
@@ -152,4 +152,6 @@ public class ScheduledThreadExecutorTest {
     }
 }
 ```  
+
+
 
