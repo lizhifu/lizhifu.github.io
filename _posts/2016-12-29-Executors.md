@@ -109,7 +109,8 @@ public class FixedThreadExecutorTest {
 }
 ```  
 
-`CachedThreadPool` 
+`CachedThreadPool`  
+
 ```  
 public class CachedThreadExecutorTest {
 
@@ -139,7 +140,8 @@ public class CachedThreadExecutorTest {
 } 
 ```  
 
-`ScheduledThreadExecutor`  
+`ScheduledThreadExecutor`
+  
 ```  
 public class ScheduledThreadExecutorTest {
 
