@@ -50,7 +50,6 @@ public interface Executor {
 `SingleThreadExecutor`
 
 ```  
-
 public class SingleThreadExecutorTest {
 
     public static void main(String[] args) {
@@ -75,8 +74,10 @@ public class SingleThreadExecutorTest {
         }
     }
 }
-```
+```  
+
 `FixedThreadPool`  
+
 ```  
 public class FixedThreadExecutorTest {
 
@@ -107,6 +108,7 @@ public class FixedThreadExecutorTest {
     }
 }
 ```  
+
 `CachedThreadPool` 
 ```  
 public class CachedThreadExecutorTest {
@@ -135,7 +137,8 @@ public class CachedThreadExecutorTest {
         }
     }
 } 
-```   
+```  
+
 `ScheduledThreadExecutor`  
 ```  
 public class ScheduledThreadExecutorTest {
@@ -147,3 +150,4 @@ public class ScheduledThreadExecutorTest {
     }
 }
 ```  
+
