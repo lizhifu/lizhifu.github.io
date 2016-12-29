@@ -24,8 +24,8 @@ Executor框架主要包含三个部分：
 
 ### Executor接口
 是Executor的基础，接口定义如下：  
-```
+`
 public interface Executor {  
-    void execute(Runnable command);  
+    void execute(Runnable command);    
 }  
-```
+`
