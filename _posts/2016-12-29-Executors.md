@@ -61,6 +61,7 @@ public interface Executor {
 *SingleThreadExecutor*  
 
 `源码`
+
 ```java  
 public static ExecutorService newSingleThreadExecutor() {
     return new FinalizableDelegatedExecutorService
@@ -71,6 +72,7 @@ public static ExecutorService newSingleThreadExecutor() {
 ```
 
 `示例：`
+
 ```java  
 public class SingleThreadExecutorTest {
 
@@ -100,6 +102,7 @@ public class SingleThreadExecutorTest {
 
 **FixedThreadPool**  
 `源码`
+
 ```java  
 public static ExecutorService newFixedThreadPool(int nThreads) {
     return new ThreadPoolExecutor(nThreads, nThreads,
@@ -109,6 +112,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 ```
 
 `示例：`
+
 ```java  
 public class FixedThreadExecutorTest {
 
@@ -142,6 +146,7 @@ public class FixedThreadExecutorTest {
 
 **CachedThreadPool**  
 `源码`
+
 ```java  
 public static ExecutorService newCachedThreadPool() {
     return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
@@ -151,6 +156,7 @@ public static ExecutorService newCachedThreadPool() {
 ```
 
 `示例：`
+
 ```java  
 public class CachedThreadExecutorTest {
 
