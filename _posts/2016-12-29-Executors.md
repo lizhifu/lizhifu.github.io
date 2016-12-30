@@ -198,17 +198,18 @@ public class CachedThreadExecutorTest {
 } 
 ```  
 
-FixedThreadPool和SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的
-工作队列。CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，但
+FixedThreadPool和SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的工作队列。  
+CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，但
 CachedThreadPool的maximumPool是无界的。这意味着，如果主线程提交任务的速度高于
 maximumPool中线程处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下，
-CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源。
-                                                         >  《java并发编程的艺术》
+CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源。  
+
+                                                                ----《java并发编程的艺术》
 
 ### Future接口  
-Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。  
+Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。   
 当我们把Runnable接口或Callable接口的实现类提交给ThreadPoolExecutor或ScheduledThreadPoolExecutor时，
-ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutureTask对象。 
+ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutureTask对象。   
 
 ```java   
 public interface Future<V> {
@@ -238,6 +239,7 @@ Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或S
 ThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。  
 除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个
 Runnable包装成一个Callable。  
+
 
 
 
