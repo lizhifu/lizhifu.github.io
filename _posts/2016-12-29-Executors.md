@@ -58,7 +58,7 @@ public interface Executor {
 
 等不同的ThreadPoolExecutor。示例如下：  
 
-*SingleThreadExecutor*  
+**SingleThreadExecutor**  
 
 `源码`  
 
@@ -70,6 +70,10 @@ public static ExecutorService newSingleThreadExecutor() {
             new LinkedBlockingQueue<Runnable>()));
 }  
 ```
+
+SingleThreadExecutor的corePoolSize和maximumPoolSize被设置为1。其他参数与
+FixedThreadPool相同。SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的工
+作队列(列的容量为Integer.MAX_VALUE)。  
 
 `示例：`  
 
@@ -110,6 +114,12 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
             new LinkedBlockingQueue<Runnable>());
 }
 ```
+
+FixedThreadPool的corePoolSize和maximumPoolSize都被设置为创建FixedThreadPool时指
+定的参数nThreads。  
+当线程池中的线程数大于corePoolSize时，keepAliveTime为多余的空闲线程等待新任务的
+最长时间，超过这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余
+的空闲线程会被立即终止。  
 
 `示例：`  
 
@@ -155,6 +165,11 @@ public static ExecutorService newCachedThreadPool() {
 }
 ```
 
+CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSize被设置为
+Integer.MAX_VALUE，即maximumPool是无界的。这里把keepAliveTime设置为60L，意味着
+CachedThreadPool中的空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会被
+终止。  
+
 `示例：`  
 
 ```java  
@@ -185,6 +200,13 @@ public class CachedThreadExecutorTest {
     }
 } 
 ```  
+
+FixedThreadPool和SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的
+工作队列。CachedThreadPool使用没有容量的SynchronousQueue作为线程池的工作队列，但
+CachedThreadPool的maximumPool是无界的。这意味着，如果主线程提交任务的速度高于
+maximumPool中线程处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下，
+CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源。
+                                                          >《java并发编程的艺术》
 
 ### Future接口  
 Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。  
