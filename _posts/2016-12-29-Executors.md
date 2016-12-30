@@ -14,13 +14,13 @@ Executor框架，基于Executor接口将任务提交和任务执行进行解耦�
 
 Executor基于生产者-消费者模式。生产者提交任务，执行任务的线程是消费者。  
 
+
+
+
+
 结构如图所示：  
 
 ![executor-frame]({{"/css/pics/executor-frame.jpg"}}) 
-
-
-
-
 
 Executor框架主要包含三个部分：  
 
