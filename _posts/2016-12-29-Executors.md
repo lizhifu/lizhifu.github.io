@@ -182,8 +182,7 @@ public class CachedThreadExecutorTest {
 
 ### Future接口  
 Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。  
-
-当我们把Runnable接口或Callable接口的实现类提交（submit）给ThreadPoolExecutor或ScheduledThreadPoolExecutor时，
+当我们把Runnable接口或Callable接口的实现类提交给ThreadPoolExecutor或ScheduledThreadPoolExecutor时，
 ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutureTask对象。 
 
 ```java   
@@ -211,8 +210,7 @@ public interface Future<V> {
 
 ### Runnable接口和Callable接口  
 Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或Scheduled-
-ThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结
-果。  
+ThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。  
 除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个
 Runnable包装成一个Callable。  
 
