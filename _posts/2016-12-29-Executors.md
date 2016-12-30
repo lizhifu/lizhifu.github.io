@@ -115,11 +115,8 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 }
 ```
 
-FixedThreadPool的corePoolSize和maximumPoolSize都被设置为创建FixedThreadPool时指
-定的参数nThreads。  
-当线程池中的线程数大于corePoolSize时，keepAliveTime为多余的空闲线程等待新任务的
-最长时间，超过这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余
-的空闲线程会被立即终止。  
+FixedThreadPool的corePoolSize和maximumPoolSize都被设置为创建FixedThreadPool时指定的参数nThreads。  
+当线程池中的线程数大于corePoolSize时，keepAliveTime为多余的空闲线程等待新任务的最长时间，  这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余的空闲线程会被立即终止。  
 
 `示例：`  
 
@@ -206,7 +203,7 @@ FixedThreadPool和SingleThreadExecutor使用无界队列LinkedBlockingQueue作�
 CachedThreadPool的maximumPool是无界的。这意味着，如果主线程提交任务的速度高于
 maximumPool中线程处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下，
 CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源。
-                                                          >《java并发编程的艺术》
+                                                         >  《java并发编程的艺术》
 
 ### Future接口  
 Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。  
