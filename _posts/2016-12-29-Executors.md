@@ -44,10 +44,10 @@ public interface Executor {
 ### ThreadPoolExecutor类
 是线程池的核心实现类，用来执行被提交的任务。它通常由工厂类Executors来创建，Executors可以创建
 
-* **SingleThreadExecutor**
-* **FixedThreadPool**
-* **CachedThreadPool**
-* **ScheduledThreadExecutor**  
+* **SingleThreadExecutor**  单线程的线程池
+* **FixedThreadPool**  固定大小的线程池。
+* **CachedThreadPool**  可缓存的线程池。
+* **ScheduledThreadExecutor**  用于执行周期或定时任务。
   
 
 等不同的ThreadPoolExecutor。示例如下：  
@@ -157,6 +157,40 @@ public class ScheduledThreadExecutorTest {
     }
 }
 ```  
+
+### Future接口  
+Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。  
+
+当我们把Runnable接口或Callable接口的实现类提交（submit）给ThreadPoolExecutor或
+ScheduledThreadPoolExecutor时，ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们
+返回一个FutureTask对象。 
+
+```java   
+public interface Future<V> {
+    //取消任务的执行。参数指定是否立即中断任务执行，或者等任务结束。
+    boolean cancel(boolean mayInterruptIfRunning);
+
+    //任务是否已经取消，任务正常完成前将其取消，则返回 true。
+    boolean isCancelled();
+
+    //任务是否已经完成。需要注意的是如果任务正常终止、异常或取消，都将返回true。
+    boolean isDone();
+
+    //等待任务执行结束，然后获得V类型的结果。
+    //InterruptedException 线程被中断异常， ExecutionException 任务执行异常，
+    //如果任务被取消，还会抛出CancellationException
+    V get() throws InterruptedException, ExecutionException;
+
+    //多了设置超时时间。参数timeout指定超时时间，uint指定时间的单位，在枚举类TimeUnit中有相关的定义。
+    //如果计算超时，将抛出TimeoutException
+    V get(long timeout, TimeUnit unit)
+            throws InterruptedException, ExecutionException, TimeoutException;
+}
+```
+
+### Runnable接口和Callable接口
+
+
 
 
 
