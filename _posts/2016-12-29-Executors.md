@@ -60,7 +60,7 @@ public interface Executor {
 
 *SingleThreadExecutor*  
 
-`源码`
+`源码`  
 
 ```java  
 public static ExecutorService newSingleThreadExecutor() {
@@ -71,7 +71,7 @@ public static ExecutorService newSingleThreadExecutor() {
 }  
 ```
 
-`示例：`
+`示例：`  
 
 ```java  
 public class SingleThreadExecutorTest {
@@ -101,7 +101,7 @@ public class SingleThreadExecutorTest {
 ```  
 
 **FixedThreadPool**  
-`源码`
+`源码`  
 
 ```java  
 public static ExecutorService newFixedThreadPool(int nThreads) {
@@ -111,7 +111,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 }
 ```
 
-`示例：`
+`示例：`  
 
 ```java  
 public class FixedThreadExecutorTest {
@@ -145,7 +145,7 @@ public class FixedThreadExecutorTest {
 ```  
 
 **CachedThreadPool**  
-`源码`
+`源码`  
 
 ```java  
 public static ExecutorService newCachedThreadPool() {
@@ -155,7 +155,7 @@ public static ExecutorService newCachedThreadPool() {
 }
 ```
 
-`示例：`
+`示例：`  
 
 ```java  
 public class CachedThreadExecutorTest {
