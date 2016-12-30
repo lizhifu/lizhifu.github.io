@@ -17,6 +17,11 @@ Executor基于生产者-消费者模式。生产者提交任务，执行任务�
 结构如图所示：  
 
 ![executor-frame]({{"/css/pics/executor-frame.jpg"}}) 
+
+
+
+
+
 Executor框架主要包含三个部分：  
 
 `任务`：包括Runnable和Callable，其中Runnable表示一个可以异步执行的任务，而Callable表示一个会产生结果的任务。
