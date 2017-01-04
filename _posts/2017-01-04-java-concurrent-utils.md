@@ -6,7 +6,6 @@ categories: java并发
 tags: java concurrent
 ---
 
-## java并发工具类
 在java的并发包里提供了几个常用的并发工具类，如CountDownLatch,CyclicBarrier和Semaphore提供了并发流程控制的方法，Exchanger提供了线程间交换数据的方法。  
 
 
