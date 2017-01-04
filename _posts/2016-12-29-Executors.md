@@ -165,10 +165,7 @@ public static ExecutorService newCachedThreadPool() {
 }
 ```
 
-CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSize被设置为
-Integer.MAX_VALUE，即maximumPool是无界的。这里把keepAliveTime设置为60L，意味着
-CachedThreadPool中的空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会被
-终止。  
+CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSize被设置为Integer.MAX_VALUE，即maximumPool是无界的。这里把keepAliveTime设置为60L，意味着CachedThreadPool中的空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会被终止。  
 CachedThreadPool是大小无界的线程池，适用于执行很多短期异步任务的小程序，或负载较轻的服务器。     
 
 
@@ -242,11 +239,94 @@ public interface Future<V> {
 ### Runnable接口和Callable接口  
 Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或Scheduled-
 ThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。  
-除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个
-Runnable包装成一个Callable。  
+除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。  
 
+```java  
+public interface Callable<V> {  
+    /** 
+     * Computes a result, or throws an exception if unable to do so. 
+     * 
+     * @return computed result 
+     * @throws Exception if unable to compute a result 
+     */  
+    V call() throws Exception;  
+}  
+  
+  
+public interface Runnable {  
+     
+    public abstract void run();  
+}  
+```  
 
+由上可见：  
+* Callable需要实现call方法，Runnable需要实现run方法；  
+* Callable有返回类型V，Runnable则没有；  
+* Callable抛出异常，Runnable没有。  
 
+```java  
+//接口ExecutorService继承自Executor，它的目的是为我们管理Thread对象，从而简化并发编程  
+public interface ExecutorService extends Executor {  
+  
+    <T> Future<T> submit(Callable<T> task);  
+     
+    <T> Future<T> submit(Runnable task, T result);  
+  
+    Future<?> submit(Runnable task);  
+      
+    ...     
+}  
+```  
+
+用Executor构建线程池：  
+1. 调用Executors类中的静态方法newCachedThreadPool或newFixedThreadPool等，返回的是一个实现了ExecutorService接口的ThreadPoolExecutor类或者是一个实现了ScheduledExecutorServiece接口的类对象；  
+2. 调用submit提交Runnable或Callable对象；  
+3. 如果想要取消一个任务，或如果提交Callable对象，那就要保存好返回的Future对象。  
+4. 当不再提交任何任务时，调用shutdown方法。  
+
+`示例`
+
+```java
+public class ThreadTest {
+
+    public static void main(String[] args) {
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        executorService.execute(new RunnableA());
+        executorService.execute(new RunnableB());
+        Future future = executorService.submit(new MyCallable());
+
+        try {
+            System.out.println(future.get());
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        } catch (ExecutionException e1) {
+            e1.printStackTrace();
+        }
+        executorService.shutdown();
+    }
+}
+
+class RunnableA implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("RunnableA");
+    }
+}
+
+class RunnableB implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("RunnableB");
+    }
+}
+
+class MyCallable implements Callable<String> {
+    @Override
+    public String call() throws Exception {
+        return "MyCallable";
+    }
+}
+```
 
 
 
