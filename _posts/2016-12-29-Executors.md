@@ -73,7 +73,9 @@ public static ExecutorService newSingleThreadExecutor() {
 
 SingleThreadExecutor的corePoolSize和maximumPoolSize被设置为1。其他参数与
 FixedThreadPool相同。SingleThreadExecutor使用无界队列LinkedBlockingQueue作为线程池的工
-作队列(列的容量为Integer.MAX_VALUE)。  
+作队列(列的容量为Integer.MAX_VALUE)。   
+SingleThreadExecutor适用于需保证顺序执行的各个任务，并且在任意时间点，不会有多个线程是活动的场景。  
+
 
 `示例：`  
 
@@ -117,6 +119,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 
 FixedThreadPool的corePoolSize和maximumPoolSize都被设置为创建FixedThreadPool时指定的参数nThreads。  
 当线程池中的线程数大于corePoolSize时，keepAliveTime为多余的空闲线程等待新任务的最长时间，  这个时间后多余的线程将被终止。这里把keepAliveTime设置为0L，意味着多余的空闲线程会被立即终止。  
+FixedThreadPool适用于为满足资源管理而需限制当前线程数的场景，适用于负载较重的服务器。  
 
 `示例：`  
 
@@ -166,6 +169,8 @@ CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSi
 Integer.MAX_VALUE，即maximumPool是无界的。这里把keepAliveTime设置为60L，意味着
 CachedThreadPool中的空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会被
 终止。  
+CachedThreadPool是大小无界的线程池，适用于执行很多短期异步任务的小程序，或负载较轻的服务器。     
+
 
 `示例：`  
 
