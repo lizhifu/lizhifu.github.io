@@ -260,9 +260,10 @@ public interface Runnable {
 ```  
 
 由上可见：  
-* Callable需要实现call方法，Runnable需要实现run方法；  
-* Callable有返回类型V，Runnable则没有；  
-* Callable抛出异常，Runnable没有。  
+
+*  Callable需要实现call方法，Runnable需要实现run方法；  
+*  Callable有返回类型V，Runnable则没有；  
+*  Callable抛出异常，Runnable没有。  
 
 ```java  
 //接口ExecutorService继承自Executor，它的目的是为我们管理Thread对象，从而简化并发编程  
@@ -281,10 +282,10 @@ public interface ExecutorService extends Executor {
 用Executor构建线程池：  
 1. 调用Executors类中的静态方法newCachedThreadPool或newFixedThreadPool等，返回的是一个实现了ExecutorService接口的ThreadPoolExecutor类或者是一个实现了ScheduledExecutorServiece接口的类对象；  
 2. 调用submit提交Runnable或Callable对象；  
-3. 如果想要取消一个任务，或如果提交Callable对象，那就要保存好返回的Future对象。  
+3. 如果想要取消一个任务，或如果提交Callable对象，那就要保存好返回的Future对象；  
 4. 当不再提交任何任务时，调用shutdown方法。  
 
-`示例`
+`示例：`
 
 ```java
 public class ThreadTest {
