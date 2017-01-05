@@ -12,11 +12,10 @@ tags: java concurrent
 
 
 
-
 ## CountDownLatch(等待多线程完成)
 CountDownLatch允许一个或多个线程等待其他线程完成操作。  
-`示例：`  
 
+`示例：`  
 ```java  
 public class CountDownLatchTest {
     private static final int N = 10;
@@ -62,13 +61,12 @@ public class CountDownLatchTest {
         }
     }
 }
-```
+```  
 
 ## CyclicBarrier(同步屏障)
 CyclicBarrier让一组线程到达一个屏障时被阻塞，直到最后一个线程到达屏障时，这一组线程才能继续执行。  
 
 `示例：`  
-
 ```java  
 public class CyclicBarrierTest {
 
@@ -99,7 +97,6 @@ public class CyclicBarrierTest {
         exec.shutdown();
     }
 }
-
 ```  
 
 ### CountDownLatch和CyclicBarrier区别  
@@ -146,7 +143,6 @@ public class SemaphoreTest {
 Exchanger是一个用于线程间协作的工具类。Exchanger提供一个同步点，在这个同步点，两个线程可以进行数据交换。这两个线程通过exchange方法交换数据，如果第一个线程先执行exchange，它会一直等待第二个线程也执行exchange方法，当两个线程都达到同步点时，这两个线程就可以交换数据。  
 
 `示例：`  
-
 ```java  
 public class ExchangerTest {
     private static final Exchanger<String> exgr = new Exchanger<String>();
