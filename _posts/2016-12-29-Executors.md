@@ -40,7 +40,7 @@ public interface Executor {
 
 包含有一个方法executor，参数为一个Runable接口引用。
 
-### ThreadPoolExecutor类
+## ThreadPoolExecutor类
 是线程池的核心实现类，用来执行被提交的任务。它通常由工厂类Executors来创建，主要由下列4个构件组成：  
 * **corePool**：核心线程池的大小  
 * **maximumPool**：最大线程池的大小  
@@ -57,7 +57,7 @@ public interface Executor {
 
 等不同的ThreadPoolExecutor。示例如下：  
 
-**SingleThreadExecutor**  
+### SingleThreadExecutor  
 
 `源码`  
 
@@ -105,7 +105,7 @@ public class SingleThreadExecutorTest {
 }
 ```  
 
-**FixedThreadPool**  
+### FixedThreadPool   
 `源码`  
 
 ```java  
@@ -153,7 +153,7 @@ public class FixedThreadExecutorTest {
 }
 ```  
 
-**CachedThreadPool**  
+### CachedThreadPool    
 `源码`  
 
 ```java  
@@ -207,7 +207,7 @@ CachedThreadPool会因为创建过多线程而耗尽CPU和内存资源。
 
                                                                 ----《java并发编程的艺术》
 
-### Future接口  
+## Future接口  
 Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。   
 当我们把Runnable接口或Callable接口的实现类提交给ThreadPoolExecutor或ScheduledThreadPoolExecutor时，
 ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutureTask对象。   
@@ -235,7 +235,7 @@ public interface Future<V> {
 }
 ```
 
-### Runnable接口和Callable接口  
+## Runnable接口和Callable接口  
 Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或Scheduled-
 ThreadPoolExecutor执行。它们之间的区别是Runnable不会返回结果，而Callable可以返回结果。  
 除了可以自己创建实现Callable接口的对象外，还可以使用工厂类Executors来把一个Runnable包装成一个Callable。  
