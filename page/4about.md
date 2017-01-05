@@ -16,7 +16,7 @@ type: page
 
 * GitHub: [lizhifu](https://github.com/lizhifu)
 * email:  ttyyzn@163.com
-* phone:  13070166223
+* phone:       13070166223
 * QQ:     674009403
 
 
