@@ -12,10 +12,13 @@ tags: java concurrent
 
 
 
-## CountDownLatch(等待多线程完成)
-CountDownLatch允许一个或多个线程等待其他线程完成操作。
-`示例：`  
-```java  
+
+## CountDownLatch(等待多线程完成)  
+CountDownLatch允许一个或多个线程等待其他线程完成操作。  
+
+`示例：`    
+
+```java   
 public class CountDownLatchTest {
     private static final int N = 10;
 
@@ -60,12 +63,14 @@ public class CountDownLatchTest {
         }
     }
 }
-```
+```  
 
-## CyclicBarrier(同步屏障)
-CyclicBarrier让一组线程到达一个屏障时被阻塞，直到最后一个线程到达屏障时，这一组线程才能继续执行。
+## CyclicBarrier(同步屏障)   
+CyclicBarrier让一组线程到达一个屏障时被阻塞，直到最后一个线程到达屏障时，这一组线程才能继续执行。  
+  
 `示例：`  
-```java  
+
+```java   
 public class CyclicBarrierTest {
 
     public static void main(String[] args) {
@@ -96,17 +101,18 @@ public class CyclicBarrierTest {
     }
 }
 
-```
+```  
 
 ### CountDownLatch和CyclicBarrier区别
 CountDownLatch的计数器只能使用一次，CyclicBarrier的计数器可以通过reset方法重置，因此可以处理更复杂的场景，比如出现异常可以重置计数器，并让线程重新执行。
 
 ## Semaphore(信号量)
 Semaphore用于控制同时访问特定资源的线程数量，通过协调各个线程来保证合理的使用公共资源。  
-应用场景： 适用公共资源有限时的流量控制，比如需要和数据库交互而数据库连接有限，此时必须控制线程的数量小于等于数据库
-，否则会无法获取连接。可以通过Semaphore做流量控制。
-`示例：` 
-```java
+应用场景： 适用公共资源有限时的流量控制，比如需要和数据库交互而数据库连接有限，此时必须控制线程的数量小于等于数据库，否则会无法获取连接。可以通过Semaphore做流量控制。   
+
+`示例：`    
+
+```java  
 public class SemaphoreTest {
     private static final int max_database_count = 10;
     private static final int thread_count = 20;
@@ -132,15 +138,16 @@ public class SemaphoreTest {
         executorService.shutdown();
     }
 }
-```
-在示例中，有20个线程在执行，然而最多只有10个并发执行。
+```  
 
-## Exchanger(线程间交换数据)
-Exchanger是一个用于线程间协作的工具类。Exchanger提供一个同步点，在这个同步点，两个线程可以进行数据交换。这两个线程通过exchange方法交换数据，如果第一个线程先执行exchange，它会一直等待第二个线程也执行exchange方法，当两个线程都达到同步点时，这两个线程就可以交换数据。
+在示例中，通过acquire()获取许可证，使用完后调用relese()方法归还。同时有20个线程在执行，然而最多只有10个并发执行。  
 
-`示例：`
+## Exchanger(线程间交换数据)  
+Exchanger是一个用于线程间协作的工具类。Exchanger提供一个同步点，在这个同步点，两个线程可以进行数据交换。这两个线程通过exchange方法交换数据，如果第一个线程先执行exchange，它会一直等待第二个线程也执行exchange方法，当两个线程都达到同步点时，这两个线程就可以交换数据。  
+   
+`示例：`  
 
-```java
+```java   
 public class ExchangerTest {
     private static final Exchanger<String> exgr = new Exchanger<String>();
     private static ExecutorService threadPool = Executors.newFixedThreadPool(2);
@@ -176,5 +183,5 @@ public class ExchangerTest {
         threadPool.shutdown();
     }
 }
-```
+```  
 
