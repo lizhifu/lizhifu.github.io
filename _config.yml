@@ -7,7 +7,7 @@
 
 # Site settings
 title: lizhifu
-brief-intro: Hello ,My World!
+brief-intro: 逆水行舟,不进则退。
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://lizhifu.github.io" # the base hostname & protocol for your site
 
