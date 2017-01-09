@@ -9,16 +9,18 @@ tags: java
 * content
 {:toc}
 
-由于HashMap在多线程下不安全，put操作可能引起死循环![hashmap][http://firezhfox.iteye.com/blog/2241043],  
+由于HashMap在多线程下不安全，put操作可能引起死循环[HashMap在java并发中如何发生死循环](http://firezhfox.iteye.com/blog/2241043,"鼠标悬停"),  
 而Hashtable则是简单粗暴的使用synchronized来保证线程安全，每次都锁住整张hash表。  
-ConcurrentHashMap  引入“分段锁”的概念，把大的map拆分成N个晓得HashMap，根据key.hashCode()决定把key放在哪个HashMap中。
-在修改操作如果在不同段，就可以并发执行。size()和containsValue()则通过顺序锁定所有段来避免死锁。
+ConcurrentHashMap引入“分段锁”的概念，把大的map拆分成N个晓得HashMap，根据key.hashCode()决定把key放在哪个HashMap中。
+在修改操作如果在不同段，就可以并发执行。
+size()和containsValue()则通过顺序锁定所有段来避免死锁。
 
 
 
 
 
-ConcurrentHashMap由Segment数组结构和HashEntry数组结构组成。Segment是一种可重入锁（ReentrantLock），在ConcurrentHashMap里扮演锁的角色；HashEntry则用于存储键值对数据。  
+ConcurrentHashMap由Segment数组结构和HashEntry数组结构组成。
+Segment是一种可重入锁（ReentrantLock），在ConcurrentHashMap里扮演锁的角色；HashEntry则用于存储键值对数据。  
 一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。  
 一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须首先获得与它对应的Segment锁。  
 ![concurrent-hashmap]({{"/css/pics/concurrent-hashmap.jpg"}})  
@@ -29,8 +31,7 @@ ConcurrentHashMap由Segment数组结构和HashEntry数组结构组成。Segment�
                        **ConcurrentHashMap结构图** 
 
 ## ConcurrentHashMap初始化  
-    ConcurrentHashMap初始化方法是通过initialCapacity、loadFactor和concurrencyLevel等几个参数来初始化segment数组、
-段偏移量segmentShift、段掩码segmentMask和每个segment里的HashEntry数组来实现的。
+ConcurrentHashMap初始化方法是通过initialCapacity、loadFactor和concurrencyLevel等几个参数来初始化segment数组、段偏移量segmentShift、段掩码segmentMask和每个segment里的HashEntry数组来实现的。
   
 ```java
 public ConcurrentHashMap(int initialCapacity,
