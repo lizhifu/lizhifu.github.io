@@ -9,7 +9,7 @@ tags: java
 * content
 {:toc}
 
-由于HashMap在多线程下不安全，put操作可能引起死循环[HashMap在java并发中如何发生死循环](http://firezhfox.iteye.com/blog/2241043,"鼠标悬停"),  
+由于HashMap在多线程下不安全，put操作可能引起死循环[(HashMap在java并发中如何发生死循环)](http://firezhfox.iteye.com/blog/2241043 "鼠标悬停"),  
 而Hashtable则是简单粗暴的使用synchronized来保证线程安全，每次都锁住整张hash表。  
 ConcurrentHashMap引入“分段锁”的概念，把大的map拆分成N个晓得HashMap，根据key.hashCode()决定把key放在哪个HashMap中。
 在修改操作如果在不同段，就可以并发执行。
