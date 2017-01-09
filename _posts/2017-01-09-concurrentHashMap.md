@@ -47,9 +47,11 @@ public ConcurrentHashMap(int initialCapacity,
 }  
 ``` 
 
-## ConcurrentHashMap常用操作
+## ConcurrentHashMap常用操作  
 
-**get操作**
+以下为jdk1.8中的源码。  
+
+### get操作  
 
 ```java
 public V get(Object key) {
@@ -73,7 +75,7 @@ public V get(Object key) {
 }
 ```
 
-**put操作**
+### put操作  
 
 ```java
 public V put(K key, V value) {
@@ -146,7 +148,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
 }
 ```  
 
-**size操作**   
+### size操作  
 
 ```java
 public int size() {
