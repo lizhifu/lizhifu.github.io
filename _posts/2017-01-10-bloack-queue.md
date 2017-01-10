@@ -21,6 +21,7 @@ tags: java queue
 
 
 阻塞队列不可用时，对队列的操作有四种处理方式：  
+
 *  抛出异常  
 *  返回特殊值  
 *  一直阻塞  
@@ -44,6 +45,7 @@ tags: java queue
 
 ## java里阻塞队列  
 jdk1.7提供了7个阻塞队列:  
+
 * ArrayBlockingQueue: 数组结构组成的有界阻塞队列。  
 * LinkedBlockingQueue： 链表结构组成的有界阻塞队列。  
 * PriorityBlockingQueue： 优先级排序的无界阻塞队列。  
