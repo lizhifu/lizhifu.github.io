@@ -3,7 +3,7 @@ layout: post
 title:  "java阻塞队列"
 date:   2017-01-11 01:02:14
 categories: java并发 
-tags: java queue
+tags: java BlockingQueue
 ---
 
 * content
@@ -13,7 +13,7 @@ tags: java queue
 
 *  插入方法： 当队列满时，队列会阻塞插入元素的线程； 
 *  移除方法： 当队列空时，获取元素的线程会等待队列变非空。  
-阻塞队列常用语生产者和消费者场景，生产者向队列里添加元素，消费者从队列里取出元素。  
+阻塞队列常用于生产者和消费者场景，生产者向队列里添加元素，消费者从队列里取出元素。  
 
 
 
