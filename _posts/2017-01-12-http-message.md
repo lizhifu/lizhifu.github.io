@@ -2,7 +2,7 @@
 layout: post
 title:  "http报文"
 date:   2017-01-12 21:22:24
-categories: http
+categories: web
 tags: http web
 ---
 
