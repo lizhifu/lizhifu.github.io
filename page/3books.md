@@ -36,6 +36,8 @@ type: page
 *  hadoop技术内幕  
 *  java并发编程实战  
 *  spring技术内幕
+*  机器学习实战  
+*  node.js权威指南
 
 ## Comments
 
