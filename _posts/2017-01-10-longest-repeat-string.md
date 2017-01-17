@@ -37,7 +37,8 @@ tags: java 算法
 private int getMaxReLength(String data) {
     int returnLength = 0;
     int length = data.length();
-    for (int i = 0 ; i < length ; i++) {
+    //右侧部分返回长度的半径不用计算
+    for (int i = 0 ; i < length - returnLength%2 ; i++) {
         // 取位置i的左侧
         String dataLeft = getLeft(data, i);
         // 取位置i的右侧
