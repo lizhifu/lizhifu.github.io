@@ -27,16 +27,16 @@ tags: java并发 atomic
 
 5 累加器DoubleAccumulator、DoubleAdder、LongAccumulator、LongAdder、Striped64
 
-也可分为如下4组：
+也可分为如下4组：  
 
 1 标量类（Scalar）：AtomicBoolean，AtomicInteger，AtomicLong，AtomicReference  
-​
+​  
 2 数组类：AtomicIntegerArray，AtomicLongArray，AtomicReferenceArray  
-​
+​  
 3 更新器类：AtomicLongFieldUpdater，AtomicIntegerFieldUpdater，AtomicReferenceFieldUpdater  
-​
+​  
 4 复合变量类：AtomicMarkableReference，AtomicStampedReference  
-
+  
 5 增量类：​DoubleAccumulator、DoubleAdder、LongAccumulator、LongAdder、Striped64  
 ​
 
@@ -46,7 +46,7 @@ java不能直接访问操作系统底层，只能通过本地方法来进行访�
 
 UnSafe类中常用的方法​addAndGet，getAndSet等都是通过compareAndSwap即CAS操作来实现。  
 
-​## 原子更新基本类型类  
+## 原子更新基本类型类  
 
 ​用于通过原子的方式更新基本类型，Atomic包提供了以下三个类：
 
@@ -70,19 +70,21 @@ AtomicIntegerArray：原子更新整型数组里的元素。
 AtomicLongArray：原子更新长整型数组里的元素。
 AtomicReferenceArray：原子更新引用类型数组里的元素。
 ​
-AtomicIntegerArray类主要是提供原子的方式更新数组里的整型，其常用方法如下
+AtomicIntegerArray类主要是提供原子的方式更新数组里的整型，其常用方法如下:
 
 int addAndGet(int i, int delta)：以原子方式将输入值与数组中索引i的元素相加。
 boolean compareAndSet(int i, int expect, int update)：如果当前值等于预期值，则以原子方式将数组位置i的元素设置成update值。
 
-## 原子更新引用类型
+## 原子更新引用类型  
+
 原子更新基本类型的AtomicInteger，只能更新一个变量，如果要原子的更新多个变量，就需要使用这个原子更新引用类型提供的类。Atomic包提供了以下三个类：
 
 AtomicReference：原子更新引用类型。
 AtomicReferenceFieldUpdater：原子更新引用类型里的字段。
 AtomicMarkableReference：原子更新带有标记位的引用类型。可以原子的更新一个布尔类型的标记位和引用类型。构造方法是AtomicMarkableReference(V initialRef, boolean initialMark)
 
-## 原子更新字段类
+## 原子更新字段类  
+
 如果我们只需要某个类里的某个字段，那么就需要使用原子更新字段类，Atomic包提供了以下三个类：
 
 AtomicIntegerFieldUpdater：原子更新整型的字段的更新器。
@@ -92,13 +94,15 @@ AtomicStampedReference：原子更新带有版本号的引用类型。该类将�
 
 ## 增量类  
 ​
-    数据 striping 就是把逻辑上连续的数据分为多个段，使这一序列的段存储在不同的物理设备上。通过把段分散到多个设备上可以增加访问并发性，从而提升总体的吞吐量。
+数据 striping 就是把逻辑上连续的数据分为多个段，使这一序列的段存储在不同的物理设备上。通过把段分散到多个设备上可以增加访问并发性，从而提升总体的吞吐量。
 
 Striped64  
-    Striped64是jdk1.8提供的用于支持如Long累加器，Double累加器这样机制的基础类，它用于类支持动态 striping 到 64bit 值上。设计核心思路就是通过内部的分散计算来避免竞争(比如多线程CAS操作时的竞争)。其内部包含一个基础值和一个单元哈希表。没有竞争的情况下，要累加的数会累加到这个基础值上；如果有竞争的话，会将要累加的数累加到单元哈希表中的某个单元里面。所以整个Striped64的值包括基础值和单元哈希表中所有单元的值的总和。
-​
+Striped64是jdk1.8提供的用于支持如Long累加器，Double累加器这样机制的基础类，它用于类支持动态 striping 到 64bit 值上。  
+设计核心思路就是通过内部的分散计算来避免竞争(比如多线程CAS操作时的竞争)。其内部包含一个基础值和一个单元哈希表。  
+没有竞争的情况下，要累加的数会累加到这个基础值上；如果有竞争的话，会将要累加的数累加到单元哈希表中的某个单元里面。所以整个Striped64的值包括基础值和单元哈希表中所有单元的值的总和。  
+
 Cell
-    Cell 类是 Striped64 的静态内部类。通过注解 @sun.misc.Contended 来自动实现缓存行填充，让Java编译器和JRE运行时来决定如何填充。本质上是一个填充了的、提供了CAS更新的volatile变量。
+Cell 类是 Striped64 的静态内部类。通过注解 @sun.misc.Contended 来自动实现缓存行填充，让Java编译器和JRE运行时来决定如何填充。本质上是一个填充了的、提供了CAS更新的volatile变量。
 
 Striped64主要提供了longAccumulate和doubleAccumulate方法来支持子类。方法的作用是将给定的值x累加到当前值(Striped64本身)上​。
 
@@ -106,13 +110,13 @@ Striped64主要提供了longAccumulate和doubleAccumulate方法来支持子类�
 
 LongAdder、DoubleAdder
 
-    LongAdder是jdk1.8提供的累加器，基于Striped64实现。它常用于状态采集、统计等场景。AtomicLong也可以用于这种场景，但在线程竞争激烈的情况下，LongAdder要比AtomicLong拥有更高的吞吐量，但会耗费更多的内存空间。
+LongAdder是jdk1.8提供的累加器，基于Striped64实现。它常用于状态采集、统计等场景。AtomicLong也可以用于这种场景，但在线程竞争激烈的情况下，LongAdder要比AtomicLong拥有更高的吞吐量，但会耗费更多的内存空间。
 
      
 
 LongAccumulator、DoubleAccumulator
 
-    LongAccumulator和LongAdder类似，也基于Striped64实现。但要比LongAdder更加灵活(要传入一个函数接口)，LongAdder相当于是LongAccumulator的一种特例。
+LongAccumulator和LongAdder类似，也基于Striped64实现。但要比LongAdder更加灵活(要传入一个函数接口)，LongAdder相当于是LongAccumulator的一种特例。
 
 
 
