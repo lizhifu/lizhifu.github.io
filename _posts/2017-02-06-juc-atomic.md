@@ -17,15 +17,15 @@ tags: java并发 atomic
 
 主要类如下所示：​
 
-1 布尔类型的AtomicBoolean
+1 布尔类型: AtomicBoolean
 
-2 整型AtomicInteger、AtomicIntegerArray、AtomicIntegerFieldUpdater
+2 整型: AtomicInteger、AtomicIntegerArray、AtomicIntegerFieldUpdater
 
-3 长整型AtomicLong、AtomicLongArray、AtomicLongFieldUpdater
+3 长整型: AtomicLong、AtomicLongArray、AtomicLongFieldUpdater
 
-4 引用型AtomicMarkableReference、AtomicReference、AtomicReferenceArray、AtomicReferenceFieldUpdater、AtomicStampedReference
+4 引用型: AtomicMarkableReference、AtomicReference、AtomicReferenceArray、AtomicReferenceFieldUpdater、AtomicStampedReference
 
-5 累加器DoubleAccumulator、DoubleAdder、LongAccumulator、LongAdder、Striped64
+5 累加器: DoubleAccumulator、DoubleAdder、LongAccumulator、LongAdder、Striped64
 
 也可分为如下4组：  
 
@@ -87,9 +87,9 @@ AtomicMarkableReference：原子更新带有标记位的引用类型。可以原
 
 如果我们只需要某个类里的某个字段，那么就需要使用原子更新字段类，Atomic包提供了以下三个类：
 
-AtomicIntegerFieldUpdater：原子更新整型的字段的更新器。
-AtomicLongFieldUpdater：原子更新长整型字段的更新器。
-AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于原子的更数据和数据的版本号，可以解决使用CAS进行原子更新时，可能出现的ABA问题。
+AtomicIntegerFieldUpdater：原子更新整型的字段的更新器。  
+AtomicLongFieldUpdater：原子更新长整型字段的更新器。  
+AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于原子的更数据和数据的版本号，可以解决使用CAS进行原子更新时，可能出现的ABA问题。  
 原子更新字段类都是抽象类，每次使用都时候必须使用静态方法newUpdater创建一个更新器。原子更新类的字段的必须使用public volatile修饰符。  
 
 ## 增量类  
@@ -98,8 +98,7 @@ AtomicStampedReference：原子更新带有版本号的引用类型。该类将�
 
 Striped64  
 Striped64是jdk1.8提供的用于支持如Long累加器，Double累加器这样机制的基础类，它用于类支持动态 striping 到 64bit 值上。  
-设计核心思路就是通过内部的分散计算来避免竞争(比如多线程CAS操作时的竞争)。其内部包含一个基础值和一个单元哈希表。  
-没有竞争的情况下，要累加的数会累加到这个基础值上；如果有竞争的话，会将要累加的数累加到单元哈希表中的某个单元里面。所以整个Striped64的值包括基础值和单元哈希表中所有单元的值的总和。    
+设计核心思路就是通过内部的分散计算来避免竞争(比如多线程CAS操作时的竞争)。其内部包含一个基础值和一个单元哈希表。没有竞争的情况下，要累加的数会累加到这个基础值上；如果有竞争的话，会将要累加的数累加到单元哈希表中的某个单元里面。所以整个Striped64的值包括基础值和单元哈希表中所有单元的值的总和。    
   
 Cell  
 
