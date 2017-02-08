@@ -16,6 +16,11 @@ tags: java 算法
 (1)首先，最容易想到的方法就是在字符串每一位置截取左右两边，判断相等个数。  
 虽然时间复杂度为n^2，不过先实现了再说。  
 
+
+
+
+
+
 ```java  
 // 获取最大回文子串
 private int getMaxReLength(String data) {
