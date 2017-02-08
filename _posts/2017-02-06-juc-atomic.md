@@ -101,7 +101,7 @@ Striped64是jdk1.8提供的用于支持如Long累加器，Double累加器这样�
 设计核心思路就是通过内部的分散计算来避免竞争(比如多线程CAS操作时的竞争)。其内部包含一个基础值和一个单元哈希表。  
 没有竞争的情况下，要累加的数会累加到这个基础值上；如果有竞争的话，会将要累加的数累加到单元哈希表中的某个单元里面。所以整个Striped64的值包括基础值和单元哈希表中所有单元的值的总和。  
 
-Cell
+Cell  
 Cell 类是 Striped64 的静态内部类。通过注解 @sun.misc.Contended 来自动实现缓存行填充，让Java编译器和JRE运行时来决定如何填充。本质上是一个填充了的、提供了CAS更新的volatile变量。
 
 Striped64主要提供了longAccumulate和doubleAccumulate方法来支持子类。方法的作用是将给定的值x累加到当前值(Striped64本身)上​。
