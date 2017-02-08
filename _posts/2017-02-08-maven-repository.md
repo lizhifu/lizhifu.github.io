@@ -15,6 +15,12 @@ tags: maven
 
 3.  把路径加入环境变量path中，例如：​D:\nexus\nexus-2.13.0-01\bin；  
 
+
+
+
+
+  
+
 4.  管理员身份运行cmd，输入nexus；  
 
       若出现Usage: nexus { console : start : stop : restart : install : uninstall }则说明路径配置成功。  
