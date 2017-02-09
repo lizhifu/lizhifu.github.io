@@ -10,7 +10,9 @@ tags: 算法 java
 {:toc}
 
 给定字符串A和字符串B，如果A和B中字符种类且每个字符出现次数一样，则A和B互为变形词。  
-比如：abc和bca互为变形词  
+比如： 
+abc和bca true  
+abcd和bca false  
 
 
 
