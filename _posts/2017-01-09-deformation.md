@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "判断是否互为变形词"
-date:   2017-02-09 10:32:43
+date:   2017-01-09 10:32:43
 categories: 算法
 tags: 算法 java
 ---
