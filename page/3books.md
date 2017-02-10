@@ -37,7 +37,9 @@ type: page
 *  java并发编程实战  
 *  spring技术内幕
 *  机器学习实战  
-*  node.js权威指南
+*  node.js权威指南  
+
+[后端书架](http://www.importnew.com/22064.html)
 
 ## Comments
 
