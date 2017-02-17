@@ -67,7 +67,7 @@ tags: 操作系统 linux
 
 Dtrace SyStemTap perf也支持对单个进行的检查。  
 
->                    《性能之巅——洞悉系统、企业与云计算》  
+>                                from  《性能之巅——洞悉系统、企业与云计算》  
 
 
 
