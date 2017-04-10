@@ -107,15 +107,14 @@ Cache将清除掉那些最近最少使用的缓存。
 
 ### 基于引用（Reference-based Eviction）  
 
-在构建Cache实例过程中，通过设置使用弱引用的键、或弱引用的值、或软引用的值，从而使JVM在GC时顺带实现缓存的清除，不过一般不轻易使用这个特性。
+在构建Cache实例过程中，通过设置使用弱引用的键、或弱引用的值、或软引用的值，从而使JVM在GC时顺带实现缓存的清除，不过一般不轻易使用这个特性。   
 （1）CacheBuilder.weakKeys()：使用弱引用存储键  
 （2）CacheBuilder.weakValues()：使用弱引用存储值  
 （3）CacheBuilder.softValues()：使用软引用存储值  
 
 ## 清除发生的时间  
 
-如果设置的存活时间为一分钟，一分钟后这个key立即清除。要实现这个功能，那Cache中就必须存在线程来进行周期性地检查、清除等工作，
-如redis、ehcache都是这样实现的。  
+如果设置的存活时间为一分钟，一分钟后这个key立即清除。要实现这个功能，那Cache中就必须存在线程来进行周期性地检查、清除等工作，如redis、ehcache都是这样实现的。   
 然而，GuavaCache中，并不存在任何线程。它实现机制是在写操作时顺带做少量的维护工作，偶尔在读操作时做。  
 
 因此，这种方式实现和使用会比较简单，但是也会带来问题：缓存存活时间长，一直占用内存。  
@@ -129,10 +128,10 @@ Cache将清除掉那些最近最少使用的缓存。
 ## 统计    
 
 CacheBuilder.recordStats()用来开启Guava Cache的统计功能。  
-统计打开后，Cache.stats()方法会返回CacheStats对象以提供如下统计信息：
-hitRate()：缓存命中率；
-averageLoadPenalty()：加载新值的平均时间，单位为纳秒；
-evictionCount()：缓存项被回收的总数，不包括显式清除。
+统计打开后，Cache.stats()方法会返回CacheStats对象以提供如下统计信息：  
+hitRate()：缓存命中率；  
+averageLoadPenalty()：加载新值的平均时间，单位为纳秒；  
+evictionCount()：缓存项被回收的总数，不包括显式清除。  
 
 
 
