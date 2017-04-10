@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  ¡°guava Cache¡±
-date:   2017-04-08 10:21:18
+date:   2017-04-08 12:14:13
 categories: cache
-tags: java cache 
+tags: java cache
 ---
 
 * content
